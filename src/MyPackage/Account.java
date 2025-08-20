@@ -33,7 +33,8 @@ class MyMain {
         a1.accNum = 202501;
         a1.userPin = 666;
         a1.bankPin = 000;
-
+        
+        System.out.println("HELLO GIT");
 
         System.out.println("Welcome To BANK OF DEVi");
         System.out.println();
