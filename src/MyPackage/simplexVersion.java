@@ -211,120 +211,120 @@ public class simplexVersion {
                 }
 
                 //Minimum Ratio
-            //     float[] min_Ratio_Array = cal_min_Ratio(b, key_Column_Array);
+                float[] min_Ratio_Array = cal_min_Ratio(b, key_Column_Array);
                     
-            //     for(int a=0;a<rows;a++){
+                for(int a=0;a<rows;a++){
 
-            //         System.out.println("MINIMUM RATIO: "+ min_Ratio_Array[a]);
+                    System.out.println("MINIMUM RATIO: "+ min_Ratio_Array[a]);
+                }
+               
+                    //Minimum of Min Ratio
+                float minOf_MinRatio_Value=cal_min_Zj_minus_cj(min_Ratio_Array);
+                    System.out.println("Minimum of Min Ratio: "+minOf_MinRatio_Value); 
+                
+                    //INdex of MinOF minimum Ratio
+                int indexOf_minOf_minRAtio = cal_Index_min_Zj_minus_cj(min_Ratio_Array);
+                    System.out.println("Index Of Min Of MIn Ratio: "+ indexOf_minOf_minRAtio);
+                
+                    //key Row
+
+                float[] key_Row_Array = cal_Key_Row(columns, table, indexOf_minOf_zj_minus_cj);
+                System.out.println("KEy ROw");    
+                for(int z=0; z<columns;z++){
+                        System.out.print(key_Row_Array[i]+" ");
+                    }
+                    System.out.println();
+                //key Element
+                float key_Element = cal_Key_element(table, indexOf_minOf_minRAtio, indexOf_minOf_zj_minus_cj);
+                    System.out.println("Key Element is: "+key_Element);
+                
+                    //keyElement=1 (TABLE UPDATED)        
+                table=cal_Key_Element1_NewKeyRow(indexOf_minOf_zj_minus_cj ,rows,b,columns, table, indexOf_minOf_minRAtio, key_Element);
+            //     for(int l=0;l<rows;l++){
+            //     for(int k=0;k<columns;k++){
+            //         System.out.println(table[l][k]+"  ");
             //     }
+            //    }
                
-            //         //Minimum of Min Ratio
-            //     float minOf_MinRatio_Value=cal_min_Zj_minus_cj(min_Ratio_Array);
-            //         System.out.println("Minimum of Min Ratio: "+minOf_MinRatio_Value); 
-                
-            //         //INdex of MinOF minimum Ratio
-            //     int indexOf_minOf_minRAtio = cal_Index_min_Zj_minus_cj(min_Ratio_Array);
-            //         System.out.println("Index Of Min Of MIn Ratio: "+ indexOf_minOf_minRAtio);
-                
-            //         //key Row
-
-            //     float[] key_Row_Array = cal_Key_Row(columns, table, indexOf_minOf_zj_minus_cj);
-            //     System.out.println("KEy ROw");    
-            //     for(int z=0; z<columns;z++){
-            //             System.out.print(key_Row_Array[i]+" ");
-            //         }
-            //         System.out.println();
-            //     //key Element
-            //     float key_Element = cal_Key_element(table, indexOf_minOf_minRAtio, indexOf_minOf_zj_minus_cj);
-            //         System.out.println("Key Element is: "+key_Element);
-                
-            //         //keyElement=1 (TABLE UPDATED)        
-            //     table=cal_Key_Element1_NewKeyRow(indexOf_minOf_zj_minus_cj ,rows,b,columns, table, indexOf_minOf_minRAtio, key_Element);
-            // //     for(int l=0;l<rows;l++){
-            // //     for(int k=0;k<columns;k++){
-            // //         System.out.println(table[l][k]+"  ");
-            // //     }
-            // //    }
-               
-            //     System.out.println("KeyEl=1");
-            //             for(int j=0;j<rows;j++){
-            //                 for(int k=0;k<columns;k++){
-            //                     System.out.print(table[j][k]+"  ");
-            //                 }
-            //                 System.out.println();
-            //             }
+                System.out.println("KeyEl=1");
+                        for(int j=0;j<rows;j++){
+                            for(int k=0;k<columns;k++){
+                                System.out.print(table[j][k]+"  ");
+                            }
+                            System.out.println();
+                        }
 
 
 
-            //             //PRINTING b
-            //             System.out.println("PRINTING b");
-            //             for(int a=0;a<rows;a++){
-            //                 System.out.println(b[i]);
+                        //PRINTING b
+                        System.out.println("PRINTING b");
+                        for(int a=0;a<rows;a++){
+                            System.out.println(b[i]);
 
-            //             }
+                        }
                         
 
-            //     //other rows =1..................................
-            //     table =cal_OtherRow1_NewKeyRow(rows, indexOf_minOf_zj_minus_cj, key_Column_Array, b, columns, table, indexOf_minOf_minRAtio, key_Element);
-            //     System.out.println("other Row=1");
-            //             for(int j=0;j<rows;j++){
-            //                 for(int k=0;k<columns;k++){
-            //                     System.out.print(table[j][k]+"  ");
-            //                 }
-            //                 System.out.println();
-            //             }
+                //other rows =1..................................
+                table =cal_OtherRow1_NewKeyRow(rows, indexOf_minOf_zj_minus_cj, key_Column_Array, b, columns, table, indexOf_minOf_minRAtio, key_Element);
+                System.out.println("other Row=1");
+                        for(int j=0;j<rows;j++){
+                            for(int k=0;k<columns;k++){
+                                System.out.print(table[j][k]+"  ");
+                            }
+                            System.out.println();
+                        }
                 
 
 
 
-            //     //=0
-            //     table = cal_OtherRows_minus_KeyRows(table, indexOf_minOf_minRAtio, indexOf_minOf_zj_minus_cj, columns);
+                //=0
+                table = cal_OtherRows_minus_KeyRows(table, indexOf_minOf_minRAtio, indexOf_minOf_zj_minus_cj, columns);
            
-            //     System.out.println("KeyEl=0");
-            //             for(int j=0;j<rows;j++){
-            //                 for(int k=0;k<columns;k++){
-            //                     System.out.print(table[j][k]+"  ");
-            //                 }
-            //                 System.out.println();
-            //             }
-            //     // NEW Cb::::::::::::::::::::::   
-            //         cb[indexOf_minOf_minRAtio]= cj[indexOf_minOf_zj_minus_cj];
+                System.out.println("KeyEl=0");
+                        for(int j=0;j<rows;j++){
+                            for(int k=0;k<columns;k++){
+                                System.out.print(table[j][k]+"  ");
+                            }
+                            System.out.println();
+                        }
+                // NEW Cb::::::::::::::::::::::   
+                    cb[indexOf_minOf_minRAtio]= cj[indexOf_minOf_zj_minus_cj];
 
-            //             System.out.println("NEW Cb");
-            //         for(int r=0;r<rows;r++){
+                        System.out.println("NEW Cb");
+                    for(int r=0;r<rows;r++){
 
-            //             System.out.println(cb[r]);
-            //         }
+                        System.out.println(cb[r]);
+                    }
 
-            //         // System.out.println("old ZJ: ");
-            //         //     for(int r=0;r<columns;r++){
-            //         //         System.err.print(zj[r]+" ");
-            //         //     }
+                    // System.out.println("old ZJ: ");
+                    //     for(int r=0;r<columns;r++){
+                    //         System.err.print(zj[r]+" ");
+                    //     }
 
-            //     zj = cal_Zj(columns, table, cb);
-            //             System.out.println("NEW ZJ: ");
-            //             for(int r=0;r<columns;r++){
-            //                 System.err.print(zj[r]+" ");
-            //             }
-            //             System.out.println();
-            //    zj_minus_cj_array= cal_Zj_minus_Cj(zj, cj);
-            //                 System.out.println("NEW ZJ-CJ: ");
-            //             for(int r=0;r<columns;r++){
-            //                 System.err.print(zj_minus_cj_array[r]+" ");
-            //             }
-            //             System.out.println();
+                zj = cal_Zj(columns, table, cb);
+                        System.out.println("NEW ZJ: ");
+                        for(int r=0;r<columns;r++){
+                            System.err.print(zj[r]+" ");
+                        }
+                        System.out.println();
+               zj_minus_cj_array= cal_Zj_minus_Cj(zj, cj);
+                            System.out.println("NEW ZJ-CJ: ");
+                        for(int r=0;r<columns;r++){
+                            System.err.print(zj_minus_cj_array[r]+" ");
+                        }
+                        System.out.println();
                
-            //             minOf_zj_minus_cj_Value = cal_min_Zj_minus_cj(zj_minus_cj_array);
-            //     System.out.println("MIN OF ZJ-CJ");
-            //     System.out.println(minOf_zj_minus_cj_Value);
+                        minOf_zj_minus_cj_Value = cal_min_Zj_minus_cj(zj_minus_cj_array);
+                System.out.println("MIN OF ZJ-CJ");
+                System.out.println(minOf_zj_minus_cj_Value);
                 
 
 
-            // }    
+            }    
                         
-            // System.out.println("ZJ Minus Cj");
-            // for(int i=0;i<columns;i++){
-            //     System.out.print(zj_minus_cj_array[i]+"  ");
+            System.out.println("ZJ Minus Cj");
+            for(int i=0;i<columns;i++){
+                System.out.print(zj_minus_cj_array[i]+"  ");
                 
             }      
         }   
