@@ -30,18 +30,18 @@ class MyMain {
         Scanner input = new Scanner(System.in);
         Account a1 = new Account();
         
-        a1.accNum = 202501;
-        a1.userPin = 666;
+        a1.accNum =930417;
+        a1.userPin = 952;
         a1.bankPin = 000;
+
         
-        System.out.println("HELLO GIT");
 
         System.out.println("Welcome To BANK OF DEVi");
         System.out.println();
         System.out.println("ENTER YOUR ACCOUNT NUMBER: ");
         int enteraccNum = input.nextInt();
         if (enteraccNum == a1.accNum) {
-         System.out.println("Press 1: Deposit");
+        System.out.println("Press 1: Deposit");
         System.out.println("Press 2: Withdraw");
         System.out.println("Press 3: View Available Balance");
         System.out.println("Press 4: Open New Account");
