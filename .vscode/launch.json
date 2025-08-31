@@ -1,0 +1,115 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "simplexVersion",
+      "request": "launch",
+      "mainClass": "MyPackage.simplexVersion",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "armstrong",
+      "request": "launch",
+      "mainClass": "MyPackage.armstrong",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "testing",
+      "request": "launch",
+      "mainClass": "MyPackage.testing",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "simplexMethodV2O",
+      "request": "launch",
+      "mainClass": "MyPackage.simplexMethodV2O",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "simplexMethod",
+      "request": "launch",
+      "mainClass": "MyPackage.simplexMethod",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "simplex",
+      "request": "launch",
+      "mainClass": "MyPackage.simplex",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "Sum",
+      "request": "launch",
+      "mainClass": "MyPackage.Sum",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "Electricity",
+      "request": "launch",
+      "mainClass": "MyPackage.Electricity",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "Guru",
+      "request": "launch",
+      "mainClass": "MyPackage.Guru",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "Array",
+      "request": "launch",
+      "mainClass": "MyPackage.Array",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "AreaOfTriangle",
+      "request": "launch",
+      "mainClass": "MyPackage.AreaOfTriangle",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "SI",
+      "request": "launch",
+      "mainClass": "MyPackage.SI",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
+      "name": "MyMain",
+      "request": "launch",
+      "mainClass": "MyPackage.MyMain",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "d:/JAVA x JSR'25/LearningJavaWithShalu/src/MyPackage",
+      "program": "d:/JAVA x JSR'25/LearningJavaWithShalu/src/MyPackage/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
