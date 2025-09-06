@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "continueSt",
+      "request": "launch",
+      "mainClass": "MyPackage.continueSt",
+      "projectName": "LearningJavaWithShalu_78cd70e"
+    },
+    {
+      "type": "java",
       "name": "simplexVersion",
       "request": "launch",
       "mainClass": "MyPackage.simplexVersion",

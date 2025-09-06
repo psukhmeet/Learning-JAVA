@@ -5,7 +5,7 @@ public class simplexVersion {
 
     //Function 1: Calculating "ZJ"
     public static float[] cal_Zj(int columns, float[][] table, float[] cb){
-        float[] result = new float[columns];
+    float[] result = new float[columns];
         for(int i=0;i<columns;i++){
             float sum=0;
             for(int j=0;j<table.length;j++){
@@ -18,7 +18,7 @@ public class simplexVersion {
 
     //Function 2: Calculating "Zj-CJ"
     public static float[] cal_Zj_minus_Cj(float[] zj, float[] cj){
-        float[] result = new float[zj.length];
+    float[] result = new float[zj.length];
         for(int i=0;i<zj.length;i++)
             result[i] = zj[i]-cj[i];
     return result;
@@ -26,7 +26,7 @@ public class simplexVersion {
 
     //Function 3: Calculating "min(Zj-CJ)"
     public static float cal_min_Zj_minus_cj(float[] zj_minus_cj){
-        float minimum = zj_minus_cj[0];
+    float minimum = zj_minus_cj[0];
         for(int i=0;i<zj_minus_cj.length;i++){
             if(minimum>zj_minus_cj[i])
                 minimum=zj_minus_cj[i];
@@ -38,15 +38,16 @@ public class simplexVersion {
 
     public static float cal_min_minRatio(float[] min_Ratio_Array){
         float minimum = min_Ratio_Array[0];
-        float min2 = minimum;
         for(int i=0;i<min_Ratio_Array.length;i++){
-            if(minimum>min_Ratio_Array[i])
+            if(minimum<0){
+                continue;
+            }
+            if(minimum>min_Ratio_Array[i]){
                 minimum=min_Ratio_Array[i];
-                if (minimum<0) {
-                 continue;       
-                }
-                        
+            }
         }
+
+
         return minimum;
 
     }
@@ -129,51 +130,57 @@ public class simplexVersion {
         return result;
     }
 
-    //Function 11: Calculating "Other Key Row Dividing by Other Key Element also "b" "
-    public static float[][] cal_OtherRow1_NewKeyRow(float other_Key_Element ,int rows, int indexOf_minOf_zj_minus_cj,float[] key_Column_Array, float[] b,int columns,float table[][], int indexOf_minOf_minRAtio , float key_Element){    
-        for(int i=0; i<rows; i++){
-            if(i!= indexOf_minOf_minRAtio){
-                b[i]=b[i]/other_Key_Element;                    
-            }
-            for(int j=0; j<columns;j++){
-                if(i!= indexOf_minOf_minRAtio){
-                    table[i][j] = table[i][j]/other_Key_Element;
-                }
-            }
-        }
-        return table;
-    }
-                
-                
-    //Function 12: Calculating "Other Rows - Key Rows"
-    
-    public static float[][] cal_OtherRows_minus_KeyRows(float[][] table, int indexOf_minOf_minRAtio, int indexOf_minOf_zj_minus_cj, int columns){
+    //Function(11+12): 
+    public static float[][] cal_mul_minus(int indexOf_minOf_zj_minus_cj,float[][] table,int columns, int indexOf_minOf_minRAtio, float other_Key_Element){
         
-        for(int i=0; i<columns;i++){
-            table[indexOf_minOf_zj_minus_cj][i]=table[indexOf_minOf_zj_minus_cj][i]-table[indexOf_minOf_minRAtio][i];
-        }
-        return table;
+for(int j=0; j<columns;j++){
+    table[indexOf_minOf_minRAtio][j] = table[indexOf_minOf_minRAtio][j] * other_Key_Element;
     }
-        
+for(int i=0; i<columns;i++){
+    table[indexOf_minOf_zj_minus_cj][i] = table[indexOf_minOf_zj_minus_cj][i] - table[indexOf_minOf_minRAtio][i];
+    }
+for(int j=0; j<columns;j++){
+     table[indexOf_minOf_minRAtio][j] = table[indexOf_minOf_minRAtio][j] / other_Key_Element;
+    }
+
+return table;
+    }
+             
     //Function 13: Operation "Other 'b' - Key 'b'"   
-    public static float[] cal_b_minus_b(int rows,float[] b, int indexOf_minOf_minRAtio){
+    public static float[] cal_b_mul_minus_b(int rows,float[] b, int indexOf_minOf_minRAtio, float other_Key_Element){
+
+        float[] result_b= new float[rows];
+        result_b= b.clone();
+
+        result_b[indexOf_minOf_minRAtio]=b[indexOf_minOf_minRAtio] * other_Key_Element;                    
+        
         for(int i=0;i<rows;i++){
             if(i!=indexOf_minOf_minRAtio){
 
-                b[i] = b[i]-b[indexOf_minOf_minRAtio];
+                b[i] = b[i] - result_b[indexOf_minOf_minRAtio]; 
             }
         }
 
-        return b;
-    }
+    return b;
+}
+
+        
+        
+        
+        
 
     //Function 14: Semi Final Operation "Cb * b"
-    public static float[] cal_Cb_into_b(int rows, float[] cb, float[] b){
+    public static float cal_Cb_into_b(int rows, float[] cb, float[] b){
+        float sum=0;
+        
+        
+        
         float[] result = new float[rows];
         for(int i=0;i<rows;i++){
             result[i] = cb[i] * b[i];
+            sum = sum + result[i];
         }
-        return result;
+        return sum;
     }
 
     //Function 15: Final Operation "sum"
@@ -207,7 +214,7 @@ public class simplexVersion {
             rows = input.nextInt();
             System.out.println("Enter Number of Variables (Columns): ");
             columns = input.nextInt();
-
+            
             //Declaring & Initializing Table:
             float [][] table = new float[rows][columns];
             System.out.println("Enter Table Values: ");
@@ -226,14 +233,15 @@ public class simplexVersion {
             float[] min_Ratio_Array = new float[rows];
             float[] key_Column_Array = new float[rows];
             float[] key_Row_Array = new float[columns];
-            float[] resultant = new float[rows];
+            float resultant;
+            
 
             //Entring "Cb"
             System.out.println("Enter 'Cb': ");
             for(int i=0; i<rows;i++){
                 cb[i] = input.nextFloat();
             }
-
+            
             //Entring "b"
             System.out.println("Enter 'b': ");
             for(int i=0; i<rows;i++){
@@ -269,7 +277,7 @@ public class simplexVersion {
             
             //Getting into Iterations:
             
-                for(int i=0;i<5;i++){
+                for(int i=0;minOf_zj_minus_cj_Value<0;i++){
                     
                     //Calculating: "Index(min(Zj-Cj))"
                     System.out.println();
@@ -294,18 +302,9 @@ public class simplexVersion {
                 
                     //Calculating: "min(Ratio)"
                     System.out.println();
-                    minOf_MinRatio_Value= cal_min_minRatio(min_Ratio_Array);
-                    System.out.println("min(Ratio): "+minOf_MinRatio_Value); 
-                    
-
-                    // if(minOf_MinRatio_Value<0){
-                    //     continue;
-                    // }else{
-
-                        
-
-                   
-                    
+                    minOf_MinRatio_Value = cal_min_minRatio(min_Ratio_Array);
+                    System.out.println("min(Ratio): "+ minOf_MinRatio_Value); 
+                
                     //Calculating: "Index(min(Ratio))"
                     System.out.println();
                     indexOf_minOf_minRAtio = cal_Index_min_Zj_minus_cj(min_Ratio_Array);
@@ -347,75 +346,55 @@ public class simplexVersion {
                         System.out.println(b[p]);
 
                     }
-                            
-                    //Table Updating: "Dividing Other Rows by Other Key Element As Well As by 'b'"
-                    System.out.println();
-                    table = cal_OtherRow1_NewKeyRow(other_Key_Element,rows, indexOf_minOf_zj_minus_cj, key_Column_Array, b, columns, table, indexOf_minOf_minRAtio, key_Element);
-                    System.out.println("Dividing Other Rows by Other Key Element As Well As by 'b'(=1(other rows))");
-                        for(int j=0;j<rows;j++){
-                            for(int k=0;k<columns;k++){
-                                System.out.print(table[j][k]+"  ");
-                            }
-                            System.out.println();
-                        }
+                
+                //Operation: table multiply and minus
+               table = cal_mul_minus(indexOf_minOf_zj_minus_cj, table, columns, indexOf_minOf_minRAtio, other_Key_Element);
+                //table = cal_mul_minus(indexOf_minOf_zj_minus_cj, temp_table, columns, indexOf_minOf_minRAtio, other_Key_Element);
 
-                        //Displaying: "b"
-                    System.out.println();
-                    System.out.println("Updating 'b'");
-                    for(int p=0;p<rows;p++){
-                        System.out.println(b[p]);
-
+                System.out.println("After mul and minus table update");
+                for(int p1=0;p1<rows;p1++){
+                    for(int p2=0;p2<columns;p2++){
+                        System.out.print(table[p1][p2]+" ");
                     }
-
-                    //Operation: "Other Rows - Key Row (=0)"
                     System.out.println();
-                    table = cal_OtherRows_minus_KeyRows(table, indexOf_minOf_minRAtio, indexOf_minOf_zj_minus_cj, columns);
-                    System.out.println("Other Rows - Key Row (=0)");
-                            for(int j=0;j<rows;j++){
-                                for(int k=0;k<columns;k++){
-                                    System.out.print(table[j][k]+"  ");
-                                }
-                                System.out.println();
-                            }
+                }    
 
-                            
-                    //Operation: "Other 'b' - Key 'b'"
-                    System.out.println();
-                    b = cal_b_minus_b(rows,b,indexOf_minOf_minRAtio);
-                    System.out.println("Updating 'b'");
+
+                //Operation: b mul and minus
+              b=  cal_b_mul_minus_b(rows, b, indexOf_minOf_minRAtio, other_Key_Element);
+                //b = cal_b_mul_minus_b(rows, temp_b, indexOf_minOf_minRAtio, other_Key_Element);
+            
+                System.out.println("Updating 'b' after mul and minus");
                     for(int p=0;p<rows;p++){
                         System.out.print(b[p]+" ");
                     }
 
-                    //Displaying: "b"
-                    System.out.println();
-                    System.out.println("Updating 'b'");
-                    for(int p=0;p<rows;p++){
-                        System.out.println(b[p]);
+                            
+                    
 
+                    //cb updating
+                    cb[indexOf_minOf_minRAtio]= cj[indexOf_minOf_zj_minus_cj];
+                    System.out.println();
+                    System.out.println("NEW Cb");
+                    for(int r=0;r<rows;r++){
+
+                        System.out.println(cb[r]);
                     }
+                    
 
                     // Semi-Final Result Calculation (cb * b)
                     resultant =cal_Cb_into_b(rows,cb,b);
                     System.out.println();
-                        System.out.println("Final Result: ");
-                        for(int p=0; p<rows;p++){
-                        System.out.println(resultant[i]);
-                        }
+                        System.out.println("Final Result: "+ resultant);
+                        // for(int p=0; p<rows;p++){
+                        // System.out.println(resultant);
+                        // }
 
                     //final Sum
-                    System.out.println("Sum is...................................");
-                        sum = cal_final_sum(rows,resultant);
-                        System.out.println(sum);
+                    // System.out.println("Sum is...................................");
+                    //     sum = cal_final_sum(rows,resultant);
+                    //     System.out.println(sum);
 
-                        //cb updating
-                        cb[indexOf_minOf_minRAtio]= cj[indexOf_minOf_zj_minus_cj];
-                        
-                        System.out.println("NEW Cb");
-                        for(int r=0;r<rows;r++){
-
-                            System.out.println(cb[r]);
-                        }
 
                         //zj updating
                         zj = cal_Zj(columns, table, cb);
@@ -446,3 +425,4 @@ public class simplexVersion {
                 }
           
 //    }
+ 
